@@ -42,15 +42,15 @@ export default function Navbar() {
             <Link href="/about" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
               About
             </Link>
-            <a href="/#lic" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
+            <Link href="/services/lic" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
               Insurance
-            </a>
-            <a href="#mutual-funds" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
+            </Link>
+            <Link href="/services/mutual-funds" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
               Investments
-            </a>
-            <a href="#health" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
+            </Link>
+            <Link href="/services/health" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
               Health
-            </a>
+            </Link>
             <a
               href="#book"
               className="text-sm font-semibold px-5 py-2 rounded-full text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-colors shadow-lg shadow-[#3B82F6]/25"
@@ -81,15 +81,15 @@ export default function Navbar() {
           <Link href="/about" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
             About
           </Link>
-          <a href="/#lic" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
+          <Link href="/services/lic" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
             Insurance
-          </a>
-          <a href="#mutual-funds" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
+          </Link>
+          <Link href="/services/mutual-funds" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
             Investments
-          </a>
-          <a href="#health" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
+          </Link>
+          <Link href="/services/health" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
             Health
-          </a>
+          </Link>
           <a
             href="#book"
             onClick={() => setIsOpen(false)}

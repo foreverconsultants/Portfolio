@@ -74,19 +74,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/#lic" className="text-zinc-400 hover:text-[#3B82F6] transition-colors">
+                <Link href="/services/lic" className="text-zinc-400 hover:text-[#3B82F6] transition-colors">
                   LIC Insurance
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#mutual-funds" className="text-zinc-400 hover:text-[#3B82F6] transition-colors">
+                <Link href="/services/mutual-funds" className="text-zinc-400 hover:text-[#3B82F6] transition-colors">
                   Mutual Funds
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#health" className="text-zinc-400 hover:text-[#3B82F6] transition-colors">
+                <Link href="/services/health" className="text-zinc-400 hover:text-[#3B82F6] transition-colors">
                   Health Insurance
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

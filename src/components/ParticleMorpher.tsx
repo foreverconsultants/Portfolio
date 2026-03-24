@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { textToPoints, infinityToPoints, sphereToPoints, graphToPoints, heartToPoints } from "@/utils/textToPoints";
@@ -30,6 +30,7 @@ const vertexShader = /* glsl */ `
   uniform float uIsInfinityTo;   // 1.0 if 'to' shape is infinity, else 0.0
   uniform float uIsGraph;        // 1.0 if shape is graph
   uniform float uIsHeart;        // 1.0 if shape is heart
+  uniform vec2 uMouse;           // Mouse position in normalized device coordinates
 
   attribute vec3 aPositionFrom;  // current shape positions
   attribute vec3 aPositionTo;    // next shape positions
@@ -100,6 +101,14 @@ const vertexShader = /* glsl */ `
     );
     pos += orbit * isNotInfinityFully;
 
+    // Mouse interaction - repel particles from mouse position
+    vec4 worldPos = modelMatrix * vec4(pos, 1.0);
+    vec2 mouseWorld = uMouse * 5.0; // Scale mouse to world space
+    float distToMouse = distance(worldPos.xy, mouseWorld);
+    float repelStrength = smoothstep(2.0, 0.0, distToMouse);
+    vec2 repelDir = normalize(worldPos.xy - mouseWorld);
+    pos.xy += repelDir * repelStrength * 0.3;
+
     vPhase = mod(aPhase + uTime * aSpeed, 6.28318) / 6.28318;
 
     vec4 mvPos = modelViewMatrix * vec4(pos, 1.0);
@@ -162,6 +171,21 @@ export default function ParticleMorpher({
   const pointsRef = useRef<THREE.Points>(null);
   const groupRef = useRef<THREE.Group>(null);
   const { viewport } = useThree();
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  // Track mouse movement
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      // Convert to normalized device coordinates (-1 to +1)
+      setMouse({
+        x: (event.clientX / window.innerWidth) * 2 - 1,
+        y: -(event.clientY / window.innerHeight) * 2 + 1,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   /* ── Generate all morph targets once ──────────────────────── */
   const targets = useMemo(() => {
@@ -239,6 +263,7 @@ export default function ParticleMorpher({
       uIsHeart: { value: 0 },
       uIsInfinityFrom: { value: 1.0 },
       uIsInfinityTo: { value: 1.0 },
+      uMouse: { value: new THREE.Vector2(0, 0) },
       uColorBase: { value: new THREE.Color(COLOR_BASE) },
       uColorTertiary: { value: new THREE.Color(COLOR_TERTIARY) },
       uColorGlow: { value: new THREE.Color(COLOR_GLOW) },
@@ -285,6 +310,7 @@ export default function ParticleMorpher({
   useFrame((_state, delta) => {
     uniforms.uTime.value += delta;
     uniforms.uMorph.value = sectionProgress;
+    uniforms.uMouse.value.set(mouse.x, mouse.y);
 
     // Pass flag if from/to is infinity
     uniforms.uIsInfinityFrom.value = loadedRef.current.from === 0 ? 1.0 : 0.0;

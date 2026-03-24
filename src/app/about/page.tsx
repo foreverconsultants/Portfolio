@@ -1,10 +1,96 @@
-import React from 'react';
+"use client";
+
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Award, TrendingUp, Shield, ArrowRight, HeartPulse, PieChart } from 'lucide-react';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
+  const mainRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const nitinRef = useRef<HTMLDivElement>(null);
+  const sujataRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!mainRef.current) return;
+
+    // Hero section animation
+    if (heroRef.current) {
+      const heroElements = heroRef.current.children;
+      gsap.set(heroElements, { opacity: 1, y: 0 });
+      
+      gsap.from(heroElements, {
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+      });
+    }
+
+    // Nitin Gandhi section
+    if (nitinRef.current) {
+      gsap.set(nitinRef.current.children, { opacity: 1, x: 0 });
+      
+      gsap.from(nitinRef.current.children, {
+        scrollTrigger: {
+          trigger: nitinRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        x: -80,
+        duration: 1,
+        stagger: 0.3,
+        ease: "power3.out",
+      });
+    }
+
+    // Sujata Gandhi section
+    if (sujataRef.current) {
+      gsap.set(sujataRef.current.children, { opacity: 1, x: 0 });
+      
+      gsap.from(sujataRef.current.children, {
+        scrollTrigger: {
+          trigger: sujataRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        x: 80,
+        duration: 1,
+        stagger: 0.3,
+        ease: "power3.out",
+      });
+    }
+
+    // CTA section
+    if (ctaRef.current) {
+      gsap.set(ctaRef.current.children, { opacity: 1, y: 0, scale: 1 });
+      
+      gsap.from(ctaRef.current.children, {
+        scrollTrigger: {
+          trigger: ctaRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        y: 40,
+        scale: 0.95,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "back.out(1.2)",
+      });
+    }
+  }, { scope: mainRef, dependencies: [] });
+
   return (
-    <main className="min-h-screen bg-[#F9FAFB] overflow-hidden">
+    <main ref={mainRef} className="min-h-screen bg-[#F9FAFB] overflow-hidden">
       {/* Subtle Background Glows */}
       <div className="fixed top-0 left-0 w-full h-[80vh] bg-gradient-to-b from-[#EFF6FF] to-transparent pointer-events-none" />
       <div className="fixed -top-[20%] -right-[10%] w-[60%] h-[70%] bg-blue-100/40 blur-[120px] rounded-full pointer-events-none" />
@@ -23,7 +109,7 @@ export default function AboutPage() {
       <div className="max-w-7xl mx-auto px-6 relative z-10 pb-32">
         
         {/* INTRO HERO */}
-        <div className="max-w-4xl mx-auto text-center mb-32">
+        <div ref={heroRef} className="max-w-4xl mx-auto text-center mb-32">
           <span className="inline-block py-2 px-4 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-100 shadow-sm">
             About Our Firm
           </span>
@@ -39,7 +125,7 @@ export default function AboutPage() {
         </div>
 
         {/* NITIN GANDHI SECTION */}
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 mb-32">
+        <div ref={nitinRef} className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 mb-32">
           {/* Image Side */}
           <div className="w-full lg:w-5/12 relative group">
             <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-10 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
@@ -96,7 +182,7 @@ export default function AboutPage() {
         </div>
 
         {/* SUJATA GANDHI SECTION */}
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24 mb-32">
+        <div ref={sujataRef} className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24 mb-32">
           {/* Image Side */}
           <div className="w-full lg:w-5/12 relative group">
             <div className="absolute inset-0 bg-emerald-500 rounded-[2.5rem] -translate-x-4 translate-y-4 opacity-10 group-hover:-translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
@@ -153,7 +239,7 @@ export default function AboutPage() {
         </div>
 
         {/* BOTTOM CALL TO ACTION */}
-        <div className="bg-[#0B0F19] rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
+        <div ref={ctaRef} className="bg-[#0B0F19] rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[200%] bg-gradient-to-r from-blue-600/30 to-emerald-500/30 blur-[120px] pointer-events-none" />
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 relative z-10 tracking-tight">
             Ready to secure your legacy?

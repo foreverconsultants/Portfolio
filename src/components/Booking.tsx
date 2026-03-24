@@ -1,7 +1,19 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { Video, MapPin, PhoneCall, Building2, CheckCircle2 } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Booking() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
+  const checklistRef = useRef<HTMLDivElement>(null);
+
   const modes = [
     {
       icon: <Video className="w-6 h-6 text-[#3B82F6]" />,
@@ -29,8 +41,83 @@ export default function Booking() {
     },
   ];
 
+  useGSAP(() => {
+    if (!sectionRef.current) return;
+    
+    const cards = gsap.utils.toArray(".booking-card") as HTMLElement[];
+    const checklistItems = gsap.utils.toArray(".checklist-item") as HTMLElement[];
+    
+    // Set initial visibility to ensure cards are visible
+    gsap.set(cards, { opacity: 1, y: 0, scale: 1 });
+    gsap.set(checklistItems, { opacity: 1, x: 0 });
+    if (headingRef.current) gsap.set(headingRef.current, { opacity: 1, y: 0 });
+    if (descRef.current) gsap.set(descRef.current, { opacity: 1, y: 0 });
+    
+    // Animate heading
+    if (headingRef.current) {
+      gsap.from(headingRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }
+
+    // Animate description
+    if (descRef.current) {
+      gsap.from(descRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: 0.2,
+        ease: "power3.out",
+      });
+    }
+
+    // Animate checklist items
+    if (checklistItems.length > 0) {
+      gsap.from(checklistItems, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+        },
+        opacity: 0,
+        x: -30,
+        duration: 0.6,
+        stagger: 0.15,
+        delay: 0.4,
+        ease: "power3.out",
+      });
+    }
+
+    // Animate cards with stagger
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+        },
+        opacity: 0,
+        y: 60,
+        scale: 0.9,
+        duration: 0.7,
+        stagger: 0.15,
+        delay: 0.3,
+        ease: "back.out(1.2)",
+      });
+    }
+  }, { scope: sectionRef });
+
   return (
-    <section id="book" className="py-24 bg-[#0B0F19] text-white relative overflow-hidden">
+    <section ref={sectionRef} id="book" className="py-24 bg-[#0B0F19] text-white relative overflow-hidden">
       {/* Abstract Background Design */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#3B82F6]/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#10B981]/10 rounded-full blur-[100px] pointer-events-none" />
@@ -40,16 +127,16 @@ export default function Booking() {
           
           {/* Left Hero Text */}
           <div className="flex flex-col gap-8 text-center lg:text-left">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
+            <h2 ref={headingRef} className="text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1]">
               <span className="text-zinc-300">Ready to secure your</span>
               <br />
               <span className="gradient-text-accent text-[#3B82F6]">Financial Destiny?</span>
             </h2>
-            <p className="text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p ref={descRef} className="text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               We understand that discussing personal finances requires absolute trust and convenience. That's why we offer 4 distinct, highly flexible forms of appointments tailored exactly to your comfort.
             </p>
             
-            <div className="flex flex-col gap-4 mt-4">
+            <div ref={checklistRef} className="flex flex-col gap-4 mt-4">
               <div className="flex items-center gap-3 justify-center lg:justify-start">
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                 <span className="text-sm font-semibold text-zinc-300 tracking-wider">Zero Obligation</span>
