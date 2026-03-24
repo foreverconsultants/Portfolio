@@ -1,7 +1,7 @@
 import React from "react";
 import { servicesData } from "@/data/services";
 import ServiceDetailClient from "./ServiceDetailClient";
-
+// ss
 export function generateStaticParams() {
   return servicesData
     .filter((s) => s.id !== "hero")
