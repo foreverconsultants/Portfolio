@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { Award, TrendingUp, Shield, Users, Star, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -11,6 +11,9 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Awards() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const thumbStripRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const awards = [
@@ -49,34 +52,141 @@ export default function Awards() {
 
   const galleryImages = [
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1772952138/characters/characters/character_tulasi_85f24a70.png",
-      caption: "Award Ceremony 2024"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035892/IMG_9507_yfcg7v.heic",
+      caption: "Trophy Cabinet — Years of Excellence"
     },
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1772651622/characters/characters/character_school_b7d932bf.png",
-      caption: "Financial Excellence Recognition"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035893/IMG_9508_ax05lt.heic",
+      caption: "Care Health Insurance — Champion Award, Sept 2024"
     },
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1772651383/characters/characters/character_ruhi_disney_d6601d92.png",
-      caption: "Industry Leadership Award"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035893/IMG_9509_tihgjk.heic",
+      caption: "Care Health Insurance — Champion Award, Jan 2024"
     },
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1771147941/characters/characters/character_shiv_disney_ada2583b.png",
-      caption: "Client Service Excellence"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035892/IMG_9506_jb35bo.heic",
+      caption: "LIC MDRT 2021 — 8th Time Qualifier, Nitin Gandhi"
     },
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1770643601/characters/characters/character_shubham_disney_c5dbde3f.png",
-      caption: "Top Performer Recognition"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035891/IMG_9505_qchfnr.heic",
+      caption: "LIC Warrior 2020 — Nitin A. Gandhi, Mumbai Div-IV"
     },
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1763703806/Gemini_Generated_Image_b0j7gqb0j7gqb0j7_gbsoey.png",
-      caption: "Professional Achievement"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035889/IMG_9504_zkddhh.heic",
+      caption: "LIC Corporate Trophy 2015"
     },
     {
-      url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/v1765438342/characters/characters/character_poof_38723776.png",
-      caption: "Industry Excellence Award"
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035890/IMG_9501_n5cyyy.heic",
+      caption: "LIC Corporate Trophy 2016"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035890/IMG_9502_dbsaob.heic",
+      caption: "Award Ceremony — Nitin Gandhi Felicitation"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035889/IMG_9503_s9wgqq.heic",
+      caption: "LIC Recognition Ceremony — Early Career Achievement"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035889/IMG_9500_veelui.heic",
+      caption: "LIC Achiever's Trophy 2013-14, Western Zone"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035888/IMG_9499_nouzle.heic",
+      caption: "LIC Shatakveer Agent Trophy 2012-13, Mumbai Div-IV"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035886/IMG_9481_ogu4nm.heic",
+      caption: "LIC Globe Trophy — Excellence in Service"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035887/IMG_9498_rzelhj.heic",
+      caption: "LIC Champions' Trophy 2014, Western Zone"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035886/IMG_9482_pxf48t.heic",
+      caption: "Care Health Insurance — Amazing Almaty Contest 2024"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035883/IMG_9479_ncy0q6.heic",
+      caption: "MDRT 2013 — Nitin Gandhi with Achievement Award"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035881/IMG_9475_yncizg.heic",
+      caption: "LIC MDRT 2010 — Certificate & Trophy, Mumbai B.O. 919"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035881/IMG_9477_gxqjni.heic",
+      caption: "Million Dollar Round Table (MDRT) 2011 Membership"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035881/IMG_9474_cvbux9.heic",
+      caption: "LIC Abhikarta Mahakumbh 2024 & Monsoon Dhamaaka 2015"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035880/IMG_9476_chyqac.heic",
+      caption: "Warrior 2020 & Vaishya Global Charitable Trust Award"
+    },
+    {
+      url: "https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775035880/IMG_9473_jjy3cf.heic",
+      caption: "LIC Dharma Chakra Trophy 2023, Mumbai Div-IV"
     },
   ];
+
+  // Cloudinary transform helpers - resize images on the CDN side
+  const getOptimizedUrl = (url: string, width: number, quality = 70) => {
+    // Insert w_{width},q_{quality} after /upload/
+    return url.replace('/upload/', `/upload/w_${width},q_${quality}/`);
+  };
+
+  // Only render slides near the current one to avoid loading all 20 images
+  const isNearCurrentSlide = (idx: number) => {
+    const total = galleryImages.length;
+    const prev = (currentSlide - 1 + total) % total;
+    const next = (currentSlide + 1) % total;
+    return idx === currentSlide || idx === prev || idx === next;
+  };
+
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+  }, [galleryImages.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  }, [galleryImages.length]);
+
+  // Touch swipe handlers for mobile
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartRef.current.x;
+    const deltaY = e.changedTouches[0].clientY - touchStartRef.current.y;
+    // Only trigger if horizontal swipe is dominant and > 50px
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      if (deltaX < 0) nextSlide();
+      else prevSlide();
+    }
+    touchStartRef.current = null;
+  }, [nextSlide, prevSlide]);
+
+  // Auto-scroll active thumbnail into view
+  useEffect(() => {
+    const strip = thumbStripRef.current;
+    if (strip) {
+      const activeThumb = strip.children[currentSlide] as HTMLElement;
+      if (activeThumb) {
+        const scrollLeft = activeThumb.offsetLeft - strip.offsetWidth / 2 + activeThumb.offsetWidth / 2;
+        strip.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      }
+    }
+  }, [currentSlide]);
 
   // Auto-advance carousel
   useEffect(() => {
@@ -85,14 +195,6 @@ export default function Awards() {
     }, 4000);
     return () => clearInterval(interval);
   }, [galleryImages.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-  };
 
   useGSAP(() => {
     if (!sectionRef.current) return;
@@ -242,64 +344,65 @@ export default function Awards() {
           </h3>
           
           <div className="relative max-w-5xl mx-auto">
-            {/* Main carousel */}
-            <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl bg-zinc-100">
-              {galleryImages.map((image, idx) => (
-                <div
-                  key={idx}
-                  className={`absolute inset-0 transition-opacity duration-700 ${
-                    idx === currentSlide ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.caption}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8">
-                    <p className="text-white text-xl font-semibold">{image.caption}</p>
+          {/* Main carousel — swipeable on mobile */}
+            <div
+              ref={carouselRef}
+              className="relative aspect-[4/3] md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl bg-zinc-900 cursor-grab active:cursor-grabbing touch-pan-y"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              {galleryImages.map((image, idx) => {
+                // Only mount slides near the current one (prev, current, next)
+                if (!isNearCurrentSlide(idx)) return null;
+                return (
+                  <div
+                    key={idx}
+                    className={`absolute inset-0 transition-opacity duration-700 ${
+                      idx === currentSlide ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <img
+                      src={getOptimizedUrl(image.url, 800)}
+                      alt={image.caption}
+                      className="w-full h-full object-contain"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 md:p-8">
+                      <p className="text-white text-base md:text-xl font-semibold">{image.caption}</p>
+                      <p className="text-zinc-400 text-xs mt-1 font-medium">{currentSlide + 1} / {galleryImages.length}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Navigation buttons */}
+            {/* Navigation buttons — small & top-positioned on mobile, centered on desktop */}
             <button
               type="button"
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-zinc-900 hover:bg-white hover:scale-110 transition-all shadow-lg z-10"
+              className="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/80 md:bg-white/90 backdrop-blur-sm flex items-center justify-center text-zinc-900 hover:bg-white hover:scale-110 transition-all shadow-md md:shadow-lg z-10"
               aria-label="Previous image"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
             </button>
             <button
               type="button"
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-zinc-900 hover:bg-white hover:scale-110 transition-all shadow-lg z-10"
+              className="absolute right-2 top-4 md:right-4 md:top-1/2 md:-translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/80 md:bg-white/90 backdrop-blur-sm flex items-center justify-center text-zinc-900 hover:bg-white hover:scale-110 transition-all shadow-md md:shadow-lg z-10"
               aria-label="Next image"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
             </button>
 
-            {/* Dots indicator */}
-            <div className="flex justify-center gap-2 mt-6">
-              {galleryImages.map((_, idx) => (
-                <button
-                  type="button"
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className={`transition-all duration-300 rounded-full ${
-                    idx === currentSlide
-                      ? 'w-8 h-2 bg-[#3B82F6]'
-                      : 'w-2 h-2 bg-zinc-300 hover:bg-zinc-400'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
+            {/* Progress bar */}
+            <div className="mt-6 bg-zinc-200 rounded-full h-1.5 max-w-md mx-auto overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${((currentSlide + 1) / galleryImages.length) * 100}%` }}
+              />
             </div>
 
-            {/* Thumbnail strip */}
-            <div className="mt-6 flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            {/* Thumbnail strip — optimized with tiny images */}
+            <div ref={thumbStripRef} className="mt-6 flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
               {galleryImages.map((image, idx) => (
                 <button
                   type="button"
@@ -312,9 +415,11 @@ export default function Awards() {
                   }`}
                 >
                   <img
-                    src={image.url}
+                    src={getOptimizedUrl(image.url, 150, 50)}
                     alt={`Thumbnail ${idx + 1}`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </button>
               ))}

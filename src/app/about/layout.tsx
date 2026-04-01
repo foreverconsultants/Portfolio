@@ -2,26 +2,36 @@ import type { Metadata } from "next";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://forever-consultants.vercel.app";
 
+// Trophy cabinet photo as OG image — showcases all awards
+const OG_IMAGE = "https://res.cloudinary.com/dbnlmt97x/image/upload/c_fill,w_1200,h_630,q_auto,f_auto/v1775035892/IMG_9507_yfcg7v.heic";
+
 export const metadata: Metadata = {
-  title: "About Us — Meet Nitin & Sujata Gandhi",
+  title: "About Us — Meet Award-Winning Advisors Nitin & Sujata Gandhi",
   description:
-    "Meet the founders of Forever Consultants — Nitin Gandhi (25+ years in wealth management) and Sujata Gandhi (20+ years in insurance). Trusted financial advisors in Mumbai.",
+    "Meet the award-winning founders of Forever Consultants — Nitin Gandhi (8x MDRT qualifier, 25+ years in wealth management, LIC Corporate Trophy & Warrior 2020 winner) and Sujata Gandhi (Care Health Insurance Champion 2024, 20+ years in insurance). 45+ combined years of financial expertise in Mumbai.",
   alternates: {
     canonical: `${BASE_URL}/about`,
   },
   openGraph: {
-    title: "About Us — Meet Nitin & Sujata Gandhi | Forever Consultants",
+    title: "About Us — Award-Winning Financial Advisors | Forever Consultants",
     description:
-      "45+ combined years of financial expertise. Meet the trusted advisors behind Forever Consultants in Mumbai.",
+      "45+ combined years of financial expertise. 8x MDRT qualifier, LIC Corporate Trophy winners, Care Health Champions. Meet the trusted advisors behind Forever Consultants.",
     url: `${BASE_URL}/about`,
     images: [
       {
-        url: `${BASE_URL}/og-image.png`,
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Forever Consultants — About Our Founders",
+        alt: "Forever Consultants — Trophy Cabinet Showcasing Years of Award-Winning Excellence",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us — Award-Winning Financial Advisors | Forever Consultants",
+    description:
+      "45+ combined years. 8x MDRT qualifier, LIC Corporate Trophy, Care Health Champions. Meet Nitin & Sujata Gandhi.",
+    images: [OG_IMAGE],
   },
 };
 

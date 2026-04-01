@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { Video, MapPin, PhoneCall, Building2, CheckCircle2, Mail, Phone } from "lucide-react";
+import React, { useRef } from "react";
+import { Video, MapPin, PhoneCall, Building2, CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +13,6 @@ export default function Booking() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
   const checklistRef = useRef<HTMLDivElement>(null);
-  const [showPersonalVisitOptions, setShowPersonalVisitOptions] = useState(false);
 
   const modes = [
     {
@@ -22,14 +20,14 @@ export default function Booking() {
       title: "Google Meet",
       desc: "Virtual face-to-face consultation from anywhere in the world.",
       action: "Book Video Call",
-      link: "https://cal.com/shubham-wcjybp",
+      link: "https://cal.com/forever-consultants/online-meet",
     },
     {
       icon: <MapPin className="w-6 h-6 text-[#10B981]" />,
       title: "Personal Visit",
       desc: "We visit your home or office for a comfortable discussion.",
       action: "Request Visit",
-      link: "https://cal.com/shubham-wcjybp",
+      link: "https://cal.com/forever-consultants/personal-visit",
     },
     {
       icon: <PhoneCall className="w-6 h-6 text-[#F59E0B]" />,
@@ -42,8 +40,8 @@ export default function Booking() {
       icon: <Building2 className="w-6 h-6 text-[#8B5CF6]" />,
       title: "On Premises",
       desc: "Visit our dedicated corporate office for an immersive planning session.",
-      action: "Get Directions",
-      link: "https://www.google.com/maps?q=19.42082977294922,72.81449127197266&z=17&hl=en",
+      action: "Book Meeting",
+      link: "https://cal.com/forever-consultants/on-premises-meet",
     },
   ];
 
@@ -162,92 +160,30 @@ export default function Booking() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/5 rounded-[40px] blur-3xl -z-10" />
             
-            {modes.map((mode, idx) => {
-              // Special handling for Personal Visit card
-              if (mode.title === "Personal Visit") {
-                return (
-                  <div key={idx} className="relative min-h-[220px]">
-                    {!showPersonalVisitOptions ? (
-                      <button
-                        type="button"
-                        onClick={() => setShowPersonalVisitOptions(true)}
-                        className="w-full h-full bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/5 hover:border-white/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between min-h-[220px] text-left"
-                      >
-                        <div>
-                          <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                            {mode.icon}
-                          </div>
-                          <h3 className="text-xl font-bold text-white mb-2">{mode.title}</h3>
-                          <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                            {mode.desc}
-                          </p>
-                        </div>
-                        
-                        <div className="mt-auto flex items-center gap-2 text-[#3B82F6] font-semibold text-sm group-hover:text-[#60A5FA] transition-colors">
-                          {mode.action}
-                          <span className="transition-transform group-hover:translate-x-1">→</span>
-                        </div>
-                      </button>
-                    ) : (
-                      <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/5 min-h-[220px] flex flex-col justify-between">
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-6">Choose Contact Method</h3>
-                          <div className="flex flex-col gap-3">
-                            <a
-                              href="tel:+919769660363"
-                              className="flex items-center gap-3 px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all group"
-                            >
-                              <Phone className="w-5 h-5 text-[#F59E0B]" />
-                              <span className="text-white font-semibold text-sm">Call Us</span>
-                            </a>
-                            <Link
-                              href="/contact"
-                              className="flex items-center gap-3 px-4 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all group"
-                            >
-                              <Mail className="w-5 h-5 text-[#3B82F6]" />
-                              <span className="text-white font-semibold text-sm">Email Us</span>
-                            </Link>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setShowPersonalVisitOptions(false)}
-                          className="mt-4 text-xs text-zinc-400 hover:text-white transition-colors text-left"
-                        >
-                          ← Back
-                        </button>
-                      </div>
-                    )}
+            {modes.map((mode, idx) => (
+              <a
+                key={idx}
+                href={mode.link}
+                target={mode.link.startsWith('tel:') ? '_self' : '_blank'}
+                rel={mode.link.startsWith('tel:') ? undefined : 'noopener noreferrer'}
+                className="booking-card bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/5 hover:border-white/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between min-h-[220px]"
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    {mode.icon}
                   </div>
-                );
-              }
-
-              // Regular cards for other modes
-              return (
-                <a
-                  key={idx}
-                  href={mode.link}
-                  target={mode.link.startsWith('tel:') ? '_self' : '_blank'}
-                  rel={mode.link.startsWith('tel:') ? undefined : 'noopener noreferrer'}
-                  className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/5 hover:border-white/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between min-h-[220px]"
-                >
-                  <div>
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      {mode.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-2">{mode.title}</h3>
-                    <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                      {mode.desc}
-                    </p>
-                  </div>
-                  
-                  <div className="mt-auto flex items-center gap-2 text-[#3B82F6] font-semibold text-sm group-hover:text-[#60A5FA] transition-colors">
-                    {mode.action}
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </div>
-                </a>
-              );
-            })}
+                  <h3 className="text-xl font-bold text-white mb-2">{mode.title}</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                    {mode.desc}
+                  </p>
+                </div>
+                
+                <div className="mt-auto flex items-center gap-2 text-[#3B82F6] font-semibold text-sm group-hover:text-[#60A5FA] transition-colors">
+                  {mode.action}
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </div>
+              </a>
+            ))}
             
           </div>
 

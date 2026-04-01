@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Forever Consultants",
   },
   description:
-    "25+ years trusted financial advisory in Mumbai. LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. Expert wealth management by Nitin & Sujata Gandhi. Book a free consultation today.",
+    "Award-winning financial advisory in Mumbai — 8x MDRT qualifier Nitin Gandhi & Care Health Champion Sujata Gandhi. 25+ years expertise in LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. ₹500Cr+ AUM. Book a free consultation today.",
   keywords: [
     "Forever Consultants",
     "financial advisor Mumbai",
@@ -38,11 +38,18 @@ export const metadata: Metadata = {
     "Sujata Gandhi",
     "insurance advisor",
     "MDRT agent India",
+    "MDRT qualifier",
+    "Million Dollar Round Table",
+    "Care Health Insurance champion",
+    "LIC Warrior award",
+    "LIC Corporate Trophy",
     "retirement planning",
     "child education plan",
     "term insurance",
     "portfolio management",
     "financial planning India",
+    "best LIC agent Nalasopara",
+    "insurance advisor Vasai",
   ],
   authors: [{ name: "Forever Consultants" }],
   creator: "Forever Consultants",
@@ -65,7 +72,7 @@ export const metadata: Metadata = {
     siteName: "Forever Consultants",
     title: "Forever Consultants — Total Investment & Insurance Solutions",
     description:
-      "25+ years of trusted financial advisory. LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. Expert wealth management in Mumbai. Book a free consultation today.",
+      "Award-winning financial advisory — 8x MDRT qualifier. LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. ₹500Cr+ AUM. Expert wealth management in Mumbai.",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
@@ -82,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Forever Consultants — Total Investment & Insurance Solutions",
     description:
-      "25+ years trusted financial advisory. LIC Insurance, Mutual Funds, SIP & Health Insurance in Mumbai.",
+      "Award-winning financial advisory — 8x MDRT qualifier. LIC Insurance, Mutual Funds, SIP & Health Insurance. ₹500Cr+ AUM in Mumbai.",
     images: [`${BASE_URL}/og-image.png`],
     creator: "@ForeverConsult",
   },
@@ -128,10 +135,10 @@ export const metadata: Metadata = {
     "geo.position": "19.0760;72.8777",
     "ICBM": "19.0760, 72.8777",
     // ── Business Info ──────────────────────────────────
-    "business:contact_data:street_address": "Mumbai, Maharashtra",
-    "business:contact_data:locality": "Mumbai",
+    "business:contact_data:street_address": "B/205, Chawre Arcade, Vasai, Nalasopara",
+    "business:contact_data:locality": "Nalasopara",
     "business:contact_data:region": "Maharashtra",
-    "business:contact_data:postal_code": "400001",
+    "business:contact_data:postal_code": "401203",
     "business:contact_data:country_name": "India",
     "business:contact_data:phone_number": "+91-9769660363",
     // ── Content Language ───────────────────────────────
@@ -155,7 +162,7 @@ function JsonLd() {
         url: BASE_URL,
         logo: `${BASE_URL}/og-image.png`,
         description:
-          "Comprehensive wealth management, LIC insurance, mutual funds, and health insurance advisory services in Mumbai with 25+ years of experience.",
+          "Award-winning wealth management, LIC insurance, mutual funds, and health insurance advisory services in Mumbai. 8x MDRT qualifier, LIC Corporate Trophy winners, Care Health Insurance Champions. 25+ years of experience, ₹500Cr+ AUM.",
         foundingDate: "2000",
         areaServed: {
           "@type": "City",
@@ -164,9 +171,10 @@ function JsonLd() {
         },
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Mumbai",
+          streetAddress: "B/205, Chawre Arcade, Vasai",
+          addressLocality: "Nalasopara",
           addressRegion: "Maharashtra",
-          postalCode: "400001",
+          postalCode: "401203",
           addressCountry: "IN",
         },
         contactPoint: [
@@ -185,7 +193,7 @@ function JsonLd() {
             availableLanguage: ["English", "Hindi", "Marathi"],
           },
         ],
-        email: "ntngandhi65@gmail.com",
+        email: "foreverconsultants2311@gmail.com",
         sameAs: [],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -226,12 +234,30 @@ function JsonLd() {
         "@type": "Person",
         "@id": `${BASE_URL}/#nitin-gandhi`,
         name: "Nitin Gandhi",
-        jobTitle: "Senior Financial Strategist",
+        jobTitle: "Senior Financial Strategist & MDRT Qualifier",
         worksFor: { "@id": `${BASE_URL}/#organization` },
         telephone: "+91-9769660363",
         email: "ntngandhi65@gmail.com",
+        image: "https://res.cloudinary.com/dbnlmt97x/image/upload/w_800,q_auto,f_auto/v1775031318/Untitled_design_24_ze2wqv.png",
         description:
-          "25+ years of experience in wealth management, mutual funds, and financial planning.",
+          "8x MDRT (Million Dollar Round Table) qualifier with 25+ years of experience. Award-winning LIC agent recognized with Corporate Trophy (2015, 2016), Warrior 2020, Achiever's Trophy, Shatakveer Agent, Champions' Trophy, and Dharma Chakra Trophy. Expert in mutual funds, wealth compounding, and asset allocation.",
+        memberOf: {
+          "@type": "Organization",
+          name: "Million Dollar Round Table (MDRT)",
+          url: "https://www.mdrt.org",
+        },
+        award: [
+          "8x MDRT Qualifier (2010, 2011, 2013, 2021+)",
+          "LIC Corporate Trophy 2015",
+          "LIC Corporate Trophy 2016",
+          "LIC Warrior 2020",
+          "LIC Achiever's Trophy 2013-14",
+          "LIC Shatakveer Agent 2012-13",
+          "LIC Champions' Trophy 2014",
+          "LIC Dharma Chakra Trophy 2023",
+          "LIC Abhikarta Mahakumbh 2024",
+        ],
+        knowsAbout: ["Mutual Funds", "LIC Insurance", "SIP", "Wealth Management", "Portfolio Management", "Financial Planning"],
       },
       {
         "@type": "Person",
@@ -241,8 +267,15 @@ function JsonLd() {
         worksFor: { "@id": `${BASE_URL}/#organization` },
         telephone: "+91-8087907776",
         email: "sujatagandhi72@gmail.com",
+        image: "https://res.cloudinary.com/dbnlmt97x/image/upload/w_800,q_auto,f_auto/v1775031318/Untitled_design_23_w0hgi5.png",
         description:
-          "20+ years of expertise in life insurance, health insurance and risk mitigation.",
+          "20+ years of expertise in life insurance, health insurance and risk mitigation. Care Health Insurance Champion (Jan 2024, Sept 2024), Amazing Almaty Contest winner 2024. Specialist in LIC policies, mediclaim, and family financial protection.",
+        award: [
+          "Care Health Insurance Champion — September 2024",
+          "Care Health Insurance Champion — January 2024",
+          "Care Health Insurance Amazing Almaty Contest 2024",
+        ],
+        knowsAbout: ["Health Insurance", "LIC Insurance", "Mediclaim", "Risk Mitigation", "Family Protection"],
       },
       // WebSite
       {

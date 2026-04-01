@@ -109,10 +109,10 @@ END:VCARD`;
           {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <img 
-              src="https://res.cloudinary.com/dc3o4l7rx/image/upload/v1774331514/Create_a_nice_202603241115_jxggjs.jpg" 
+              src="https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775031318/Untitled_design_24_ze2wqv.png" 
               alt="Nitin Gandhi"
               className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 13%' }}
+              style={{ objectPosition: 'center top' }}
             />
             {/* Dark gradient overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />

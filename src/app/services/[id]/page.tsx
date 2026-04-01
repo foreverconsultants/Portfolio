@@ -31,7 +31,7 @@ export async function generateMetadata({
     lic: {
       title: "LIC Insurance & Life Protection — Plans, Benefits & Expert Advisory",
       description:
-        "Expert LIC insurance advisory in Mumbai. Endowment plans, term life, retirement, child education plans with sovereign guarantee. 25+ years of trusted LIC agent service.",
+        "Expert LIC insurance advisory by 8x MDRT qualifier & Corporate Trophy winning agents. Endowment plans, term life, retirement, child education plans with sovereign guarantee. 25+ years of trusted service in Mumbai.",
       keywords: [
         "LIC insurance Mumbai",
         "LIC agent",
@@ -41,12 +41,15 @@ export async function generateMetadata({
         "term life insurance",
         "child education plan LIC",
         "retirement plan LIC",
+        "MDRT LIC agent",
+        "best LIC agent Mumbai",
+        "LIC Corporate Trophy winner",
       ],
     },
     "mutual-funds": {
       title: "Mutual Funds & Wealth Creation — SIP, Portfolio Management & Expert Advisory",
       description:
-        "Best mutual fund advisor in Mumbai. SIP, SWP, portfolio management, ELSS tax-saving funds. Expert fund selection & quarterly rebalancing. Start with ₹500/month.",
+        "Best mutual fund advisor in Mumbai. ₹500Cr+ AUM managed. SIP, SWP, portfolio management, ELSS tax-saving funds. Expert fund selection & quarterly rebalancing by 8x MDRT qualifier. Start with ₹500/month.",
       keywords: [
         "mutual funds advisor Mumbai",
         "SIP investment",
@@ -56,12 +59,14 @@ export async function generateMetadata({
         "equity mutual funds",
         "best mutual fund advisor",
         "wealth creation India",
+        "500 crore AUM",
+        "MDRT financial advisor",
       ],
     },
     health: {
       title: "Health Insurance & Mediclaim — Cashless Hospitalization & Expert Advisory",
       description:
-        "Best health insurance plans in Mumbai. Cashless hospitalization at 10,000+ hospitals. Care Health, Star Health, ICICI Lombard policies. Family floater & senior citizen plans.",
+        "Best health insurance plans in Mumbai by Care Health Insurance Champion (2024). Cashless hospitalization at 10,000+ hospitals. Care Health, Star Health, ICICI Lombard policies. Family floater & senior citizen plans.",
       keywords: [
         "health insurance Mumbai",
         "mediclaim policy",
@@ -71,6 +76,8 @@ export async function generateMetadata({
         "Care Health insurance",
         "ICICI Lombard health",
         "senior citizen health insurance",
+        "Care Health Champion advisor",
+        "best health insurance agent Mumbai",
       ],
     },
   };

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Mail } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,36 +39,49 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/about" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-              About
+          <div className="flex items-center gap-3 md:gap-6">
+            <div className="hidden md:flex items-center gap-8 mr-2">
+              <Link href="/about" className="text-sm font-medium text-zinc-600 hover:text-[#3B82F6] transition-colors">
+                About
+              </Link>
+              <Link href="/services/lic" className="text-sm font-medium text-zinc-600 hover:text-[#3B82F6] transition-colors">
+                Insurance
+              </Link>
+              <Link href="/services/mutual-funds" className="text-sm font-medium text-zinc-600 hover:text-[#3B82F6] transition-colors">
+                Investments
+              </Link>
+              <Link href="/services/health" className="text-sm font-medium text-zinc-600 hover:text-[#3B82F6] transition-colors">
+                Health
+              </Link>
+            </div>
+
+            {/* Email Icon Button */}
+            <Link 
+              href="/contact" 
+              className="w-9 h-9 rounded-full flex items-center justify-center bg-blue-50 text-[#3B82F6] hover:bg-[#3B82F6] hover:text-white transition-all shadow-sm border border-blue-100"
+              aria-label="Email Us"
+              title="Email Us"
+            >
+              <Mail className="w-4 h-4" />
             </Link>
-            <Link href="/services/lic" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-              Insurance
-            </Link>
-            <Link href="/services/mutual-funds" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-              Investments
-            </Link>
-            <Link href="/services/health" className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-              Health
-            </Link>
+
             <a
               href="#book"
-              className="text-sm font-semibold px-5 py-2 rounded-full text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-colors shadow-lg shadow-[#3B82F6]/25"
+              className="hidden md:flex items-center justify-center text-sm font-semibold px-5 py-2 rounded-full text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-colors shadow-lg shadow-[#3B82F6]/25"
             >
               Get Started
             </a>
-          </div>
 
-          <button 
-            className="md:hidden text-zinc-600 hover:text-zinc-900 transition-colors" 
-            aria-label="Menu"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              {isOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
-            </svg>
-          </button>
+            <button 
+              className="md:hidden flex items-center justify-center w-9 h-9 text-zinc-600 hover:text-zinc-900 transition-colors" 
+              aria-label="Menu"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                {isOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 

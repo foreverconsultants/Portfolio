@@ -131,7 +131,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-10 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] border-white aspect-[4/5] bg-zinc-100">
               <img 
-                src="https://res.cloudinary.com/dc3o4l7rx/image/upload/v1774331514/Create_a_nice_202603241115_jxggjs.jpg" 
+                src="https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775031318/Untitled_design_24_ze2wqv.png" 
                 alt="Nitin Gandhi - Senior Financial Strategist" 
                 className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700 origin-center"
               />
@@ -188,7 +188,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-emerald-500 rounded-[2.5rem] -translate-x-4 translate-y-4 opacity-10 group-hover:-translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] border-white aspect-[4/5] bg-zinc-100">
               <img 
-                src="https://res.cloudinary.com/dc3o4l7rx/image/upload/v1774331514/Woman_in_blazer_202603241115_k1l8p6.jpg" 
+                src="https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775031318/Untitled_design_23_w0hgi5.png" 
                 alt="Sujata Gandhi - Principal Life & Health Advisor" 
                 className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700 origin-center"
               />
@@ -248,7 +248,7 @@ export default function AboutPage() {
             Book a dedicated consultation directly with our founders today to construct your aggressively optimized and fully protected personal financial roadmap.
           </p>
           <Link
-            href="https://cal.com/shubham-wcjybp"
+            href="https://cal.com/forever-consultants/"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-[#0B0F19] rounded-full font-extrabold text-lg hover:scale-105 hover:bg-zinc-50 transition-all relative z-10 shadow-[0_0_40px_rgba(255,255,255,0.3)]"

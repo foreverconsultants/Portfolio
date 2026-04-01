@@ -239,7 +239,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               
               <div className="flex flex-col gap-4 relative z-10">
                 <a
-                  href="https://cal.com/shubham-wcjybp"
+                  href="https://cal.com/forever-consultants/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full text-center px-6 py-4 bg-white text-[#1E3A8A] font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
@@ -247,7 +247,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   Consult an Expert
                 </a>
                 <Link
-                  href="https://cal.com/shubham-wcjybp"
+                  href="https://cal.com/forever-consultants/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full text-center px-6 py-4 bg-white/10 text-white font-bold rounded-xl hover:bg-white/20 transition-colors border border-white/20 backdrop-blur-sm"

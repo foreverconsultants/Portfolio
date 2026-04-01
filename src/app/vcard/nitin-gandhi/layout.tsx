@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://forever-consultants.vercel.app";
 
+// Actual Cloudinary photo — face-centered landscape crop for OG
+const OG_IMAGE = "https://res.cloudinary.com/dbnlmt97x/image/upload/c_fill,g_north,w_1200,h_630,q_auto,f_auto/v1775031318/Untitled_design_24_ze2wqv.png";
+
 export const metadata: Metadata = {
-  title: "Nitin Gandhi — Senior Insurance Advisor, MDRT | Forever Consultants",
+  title: "Nitin Gandhi — 8x MDRT Qualifier & Senior Insurance Advisor | Forever Consultants",
   description:
-    "Contact Nitin Gandhi — Senior Insurance Advisor (MDRT) with 25+ years of experience. LIC Insurance, Mutual Funds & Wealth Management expert at Forever Consultants, Mumbai.",
+    "Contact Nitin Gandhi — 8x MDRT (Million Dollar Round Table) qualifier with 25+ years of experience. Award-winning LIC agent recognized with Corporate Trophy, Warrior 2020, Shatakveer Agent & more. Mutual Funds & Wealth Management expert at Forever Consultants, Mumbai.",
   alternates: {
     canonical: `${BASE_URL}/vcard/nitin-gandhi`,
   },
@@ -14,16 +17,16 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: `${BASE_URL}/vcard/nitin-gandhi`,
     siteName: "Forever Consultants",
-    title: "Nitin Gandhi — Senior Insurance Advisor, MDRT",
+    title: "Nitin Gandhi — 8x MDRT Qualifier & Senior Insurance Advisor",
     description:
-      "25+ years of trusted financial advisory. LIC Insurance, Mutual Funds & Wealth Management. Contact Nitin Gandhi at Forever Consultants.",
+      "25+ years of trusted financial advisory. 8x MDRT qualifier, LIC Corporate Trophy winner, Warrior 2020. LIC Insurance, Mutual Funds & Wealth Management expert.",
     images: [
       {
-        url: "https://res.cloudinary.com/dc3o4l7rx/image/upload/c_fill,g_face,w_1200,h_630,q_auto/v1774331514/Create_a_nice_202603241115_jxggjs.jpg",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Nitin Gandhi — Senior Insurance Advisor at Forever Consultants",
-        type: "image/jpeg",
+        alt: "Nitin Gandhi — 8x MDRT Qualifier & Senior Insurance Advisor at Forever Consultants",
+        type: "image/png",
       },
     ],
     firstName: "Nitin",
@@ -31,12 +34,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nitin Gandhi — Senior Insurance Advisor, MDRT",
+    title: "Nitin Gandhi — 8x MDRT Qualifier & Senior Insurance Advisor",
     description:
-      "25+ years of trusted financial advisory. LIC Insurance, Mutual Funds & Wealth Management. Contact Nitin Gandhi.",
-    images: [
-      "https://res.cloudinary.com/dc3o4l7rx/image/upload/c_fill,g_face,w_1200,h_630,q_auto/v1774331514/Create_a_nice_202603241115_jxggjs.jpg",
-    ],
+      "25+ years experience. 8x MDRT qualifier, LIC Corporate Trophy, Warrior 2020. Mutual Funds & Wealth Management expert at Forever Consultants.",
+    images: [OG_IMAGE],
   },
   other: {
     "profile:first_name": "Nitin",

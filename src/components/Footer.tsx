@@ -96,6 +96,7 @@ export default function Footer() {
               Talk To Us
             </h4>
             <ul className="space-y-4 text-sm">
+              <li className="text-zinc-400">foreverconsultants2311@gmail.com</li>
               <li className="text-zinc-400">ntngandhi65@gmail.com</li>
               <li className="text-zinc-400">sujatagandhi72@gmail.com</li>
               <li>

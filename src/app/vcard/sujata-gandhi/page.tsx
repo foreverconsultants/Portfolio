@@ -109,10 +109,10 @@ END:VCARD`;
           {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <img 
-              src="https://res.cloudinary.com/dc3o4l7rx/image/upload/v1774331514/Woman_in_blazer_202603241115_k1l8p6.jpg" 
+              src="https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775031318/Untitled_design_23_w0hgi5.png" 
               alt="Sujata Gandhi"
               className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 13%' }}
+              style={{ objectPosition: 'center 35%' }}
             />
             {/* Dark gradient overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
