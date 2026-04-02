@@ -42,16 +42,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/vcard/nitin-gandhi`,
+      url: `${baseUrl}/#book`,
       lastModified: currentDate,
-      changeFrequency: "yearly",
-      priority: 0.4,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
-      url: `${baseUrl}/vcard/sujata-gandhi`,
+      url: `${baseUrl}/contact#email`,
       lastModified: currentDate,
-      changeFrequency: "yearly",
-      priority: 0.4,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 }
