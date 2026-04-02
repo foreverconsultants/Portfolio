@@ -1,14 +1,18 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, User, Phone, MessageSquare, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { ArrowLeft, Mail, User, Phone, MessageSquare, Send, CheckCircle, AlertCircle, Clock } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import emailjs from "@emailjs/browser";
+import { checkRateLimit, peekRateLimit } from "@/hooks/useRateLimit";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const RATE_KEY = "contact_email";
+const MAX_PER_DAY = 2;
 
 export default function ContactPage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -21,8 +25,16 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error" | "rate_limited">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [rateLimitInfo, setRateLimitInfo] = useState<{ remaining: number; resetsAt: string } | null>(null);
+
+  // Check quota on mount so the button can be pre-disabled
+  useEffect(() => {
+    const peek = peekRateLimit(RATE_KEY, MAX_PER_DAY);
+    setRateLimitInfo({ remaining: peek.remaining, resetsAt: peek.resetsAt });
+    if (!peek.allowed) setSubmitStatus("rate_limited");
+  }, []);
 
   useGSAP(() => {
     if (!mainRef.current || !formRef.current) return;
@@ -41,6 +53,15 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Rate limit check
+    const limit = checkRateLimit(RATE_KEY, MAX_PER_DAY);
+    setRateLimitInfo({ remaining: limit.remaining, resetsAt: limit.resetsAt });
+    if (!limit.allowed) {
+      setSubmitStatus("rate_limited");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
     setErrorMessage("");
@@ -227,7 +248,7 @@ export default function ContactPage() {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || submitStatus === "rate_limited"}
               className="w-full bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] text-white font-bold py-4 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
@@ -235,10 +256,18 @@ export default function ContactPage() {
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   Sending...
                 </>
+              ) : submitStatus === "rate_limited" ? (
+                <>
+                  <Clock className="w-5 h-5" />
+                  Daily Limit Reached
+                </>
               ) : (
                 <>
                   <Send className="w-5 h-5" />
                   Send Request
+                  {rateLimitInfo && rateLimitInfo.remaining > 0 && (
+                    <span className="ml-1 text-xs opacity-75">({rateLimitInfo.remaining} left today)</span>
+                  )}
                 </>
               )}
             </button>
@@ -247,7 +276,32 @@ export default function ContactPage() {
             {submitStatus === "success" && (
               <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 shrink-0" />
-                <span className="font-semibold">Thank you! We'll contact you within 24 hours to schedule your visit.</span>
+                <span className="font-semibold">
+                  Thank you! We'll contact you within 24 hours to schedule your visit.
+                  {rateLimitInfo && rateLimitInfo.remaining > 0 && (
+                    <span className="block text-sm font-normal mt-1 text-emerald-700">{rateLimitInfo.remaining} submission{rateLimitInfo.remaining !== 1 ? "s" : ""} remaining today.</span>
+                  )}
+                </span>
+              </div>
+            )}
+
+            {/* Rate Limit Message */}
+            {submitStatus === "rate_limited" && (
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 flex items-start gap-3">
+                <Clock className="w-5 h-5 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold block">Daily limit reached — you've sent {MAX_PER_DAY} emails today.</span>
+                  <span className="text-sm">
+                    The limit resets at midnight. You can also{" "}
+                    <a
+                      href="mailto:foreverconsultants2311@gmail.com"
+                      className="underline hover:text-amber-900 font-semibold"
+                    >
+                      email us directly
+                    </a>
+                    {" "}for urgent queries.
+                  </span>
+                </div>
               </div>
             )}
 

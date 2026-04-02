@@ -246,14 +246,6 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 >
                   Consult an Expert
                 </a>
-                <Link
-                  href="https://cal.com/forever-consultants/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center px-6 py-4 bg-white/10 text-white font-bold rounded-xl hover:bg-white/20 transition-colors border border-white/20 backdrop-blur-sm"
-                >
-                  Request Callback
-                </Link>
               </div>
             </div>
 
