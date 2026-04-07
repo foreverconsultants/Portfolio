@@ -74,12 +74,14 @@ export default function ScrollSections() {
 
   return (
     <div className="relative w-full">
-      {/* 3D Particle Background - Sticky on desktop, Fixed on mobile */}
-      <div className="sticky md:sticky fixed top-0 h-screen w-full pointer-events-none z-0 overflow-hidden">
-        <SceneWrapper />
+      {/* 3D Particle Background - Using absolute wrapper with sticky child to eliminate -mt-[100vh] CLS */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="sticky top-0 h-[100svh] w-full">
+          <SceneWrapper />
+        </div>
       </div>
 
-      <div className="-mt-[100vh] relative z-10 w-full">
+      <div className="relative z-10 w-full">
         {/* Glow blobs cleanly isolated to prevent x-overflow on mobile */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-none w-full">
           <div className="blob-blue" style={{ top: "10%", right: "-5%" }} />
@@ -181,7 +183,7 @@ export default function ScrollSections() {
       </section>
 
       {/* --- SERVICE SECTIONS CONTAINER --- */}
-      <div ref={containerRef} className="h-screen w-full relative">
+      <div ref={containerRef} className="h-[100svh] w-full relative">
         <div className="absolute inset-0 flex items-center px-6 overflow-hidden">
           <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center h-full relative">
             <div className="md:col-start-2 relative w-full min-h-[450px] md:h-[600px] flex items-center pt-32 md:pt-0">

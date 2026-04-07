@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center px-6">
+    <section className="relative min-h-[90svh] flex items-center justify-center px-6">
       <div className="text-center z-10 max-w-3xl mx-auto">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-white/60 mb-8">
