@@ -65,12 +65,12 @@ export default function Navbar() {
               <Mail className="w-4 h-4" />
             </Link>
 
-            <a
-              href="#book"
+            <Link
+              href="/#book"
               className="hidden md:flex items-center justify-center text-sm font-semibold px-5 py-2 rounded-full text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-colors shadow-lg shadow-[#3B82F6]/25"
             >
               Get Started
-            </a>
+            </Link>
 
             <button 
               className="md:hidden flex items-center justify-center w-9 h-9 text-zinc-600 hover:text-zinc-900 transition-colors" 
@@ -104,13 +104,13 @@ export default function Navbar() {
           <Link href="/services/health" onClick={() => setIsOpen(false)} className="text-zinc-700 font-medium py-3 border-b border-black/5 text-lg">
             Health
           </Link>
-          <a
-            href="#book"
+          <Link
+            href="/#book"
             onClick={() => setIsOpen(false)}
             className="text-center font-semibold px-5 py-3.5 rounded-full text-white bg-[#3B82F6] shadow-lg mt-4"
           >
             Get Started
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

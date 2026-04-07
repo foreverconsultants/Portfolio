@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://forever-consultants.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.foreverconsultants.in";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Forever Consultants",
   },
   description:
-    "Award-winning financial advisory in Mumbai — 8x MDRT qualifier Nitin Gandhi & Care Health Champion Sujata Gandhi. 25+ years expertise in LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. ₹500Cr+ AUM. Book a free consultation today.",
+    "Award-winning financial advisory in Mumbai — 15x MDRT qualifier Nitin Gandhi & Care Health Champion Sujata Gandhi. 25+ years expertise in LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. ₹50Cr+ AUM. Book a free consultation today.",
   keywords: [
     "Forever Consultants",
     "financial advisor Mumbai",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     siteName: "Forever Consultants",
     title: "Forever Consultants — Total Investment & Insurance Solutions",
     description:
-      "Award-winning financial advisory — 8x MDRT qualifier. LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. ₹500Cr+ AUM. Expert wealth management in Mumbai.",
+      "Award-winning financial advisory — 15x MDRT qualifier. LIC Insurance, Mutual Funds, SIP, Mediclaim & Health Insurance. ₹50Cr+ AUM. Expert wealth management in Mumbai.",
     images: [
       {
         url: `${BASE_URL}/og-image.png`,
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Forever Consultants — Total Investment & Insurance Solutions",
     description:
-      "Award-winning financial advisory — 8x MDRT qualifier. LIC Insurance, Mutual Funds, SIP & Health Insurance. ₹500Cr+ AUM in Mumbai.",
+      "Award-winning financial advisory — 15x MDRT qualifier. LIC Insurance, Mutual Funds, SIP & Health Insurance. ₹50Cr+ AUM in Mumbai.",
     images: [`${BASE_URL}/og-image.png`],
     creator: "@ForeverConsult",
   },
@@ -166,7 +166,7 @@ function JsonLd() {
         url: BASE_URL,
         logo: `${BASE_URL}/og-image.png`,
         description:
-          "Award-winning wealth management, LIC insurance, mutual funds, and health insurance advisory services in Mumbai. 8x MDRT qualifier, LIC Corporate Trophy winners, Care Health Insurance Champions. 25+ years of experience, ₹500Cr+ AUM.",
+          "Award-winning wealth management, LIC insurance, mutual funds, and health insurance advisory services in Mumbai. 15x MDRT qualifier, LIC Corporate Trophy winners, Care Health Insurance Champions. 25+ years of experience, ₹50Cr+ AUM.",
         foundingDate: "2000",
         areaServed: {
           "@type": "City",
@@ -244,14 +244,14 @@ function JsonLd() {
         email: "ntngandhi65@gmail.com",
         image: "https://res.cloudinary.com/dbnlmt97x/image/upload/w_800,q_auto,f_auto/v1775031318/Untitled_design_24_ze2wqv.png",
         description:
-          "8x MDRT (Million Dollar Round Table) qualifier with 25+ years of experience. Award-winning LIC agent recognized with Corporate Trophy (2015, 2016), Warrior 2020, Achiever's Trophy, Shatakveer Agent, Champions' Trophy, and Dharma Chakra Trophy. Expert in mutual funds, wealth compounding, and asset allocation.",
+          "15x MDRT (Million Dollar Round Table) qualifier with 25+ years of experience. Award-winning LIC agent recognized with Corporate Trophy (2015, 2016), Warrior 2020, Achiever's Trophy, Shatakveer Agent, Champions' Trophy, and Dharma Chakra Trophy. Expert in mutual funds, wealth compounding, and asset allocation.",
         memberOf: {
           "@type": "Organization",
           name: "Million Dollar Round Table (MDRT)",
           url: "https://www.mdrt.org",
         },
         award: [
-          "8x MDRT Qualifier (2010, 2011, 2013, 2021+)",
+          "15x MDRT Qualifier (2010, 2011, 2013, 2021+)",
           "LIC Corporate Trophy 2015",
           "LIC Corporate Trophy 2016",
           "LIC Warrior 2020",

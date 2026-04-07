@@ -10,24 +10,24 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   {
     id: 1,
-    name: "Rajesh Sharma",
-    role: "Business Owner",
+    name: "Charulata Rane",
+    role: "School Trustee",
     content:
       "Forever Consultants completely transformed my understanding of wealth management. Their advice on Mutual Funds and Health Insurance was tailored perfectly to my family's needs.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Anita Desai",
-    role: "IT Professional",
+    name: "Milind Yashwantrao",
+    role: "Chief of Accounts, Dervan Hospital",
     content:
       "I was completely lost when it came to LIC and retirement planning. Their expert guidance provided me with a clear roadmap to secure my future. I cannot recommend them enough.",
     rating: 5,
   },
   {
     id: 3,
-    name: "Vikram Mehta",
-    role: "Doctor",
+    name: "Mahesh Patwardhan",
+    role: "Professor",
     content:
       "A highly professional team with deep knowledge of the financial markets. They set up my SIPs smoothly and ensured I got top-tier Mediclaim for complete peace of mind.",
     rating: 5,

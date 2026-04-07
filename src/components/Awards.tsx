@@ -19,26 +19,26 @@ export default function Awards() {
   const awards = [
     {
       icon: <Award className="w-8 h-8" />,
-      title: "LIC Certified Advisors",
-      description: "Officially recognized and certified by Life Insurance Corporation of India",
+      title: "15x MDRT Qualifier",
+      description: "Recognized globally at the Million Dollar Round Table for excellence in life insurance and financial services",
       color: "blue",
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: "AMFI Registered",
-      description: "Association of Mutual Funds in India certified mutual fund distributors",
+      title: "5000+ Policies",
+      description: "Successfully managing and servicing over 5000 active policies to secure our clients' futures",
       color: "emerald",
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: "5000+ Families Served",
-      description: "Trusted by thousands of families across India for their financial security",
+      title: "2500+ Families Served",
+      description: "Trusted by over 2500 families across India for their financial security and wealth management",
       color: "purple",
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: "₹500Cr+ AUM",
-      description: "Managing over 500 crores in assets under management with consistent growth",
+      title: "₹50Cr+ AUM",
+      description: "Managing over 50 crores in assets under management with consistent and strategic growth",
       color: "amber",
     },
   ];

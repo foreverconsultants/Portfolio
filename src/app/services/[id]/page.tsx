@@ -31,7 +31,7 @@ export async function generateMetadata({
     lic: {
       title: "LIC Insurance & Life Protection — Plans, Benefits & Expert Advisory",
       description:
-        "Expert LIC insurance advisory by 8x MDRT qualifier & Corporate Trophy winning agents. Endowment plans, term life, retirement, child education plans with sovereign guarantee. 25+ years of trusted service in Mumbai.",
+        "Expert LIC insurance advisory by 15x MDRT qualifier & Corporate Trophy winning agents. Endowment plans, term life, retirement, child education plans with sovereign guarantee. 25+ years of trusted service in Mumbai.",
       keywords: [
         "LIC insurance Mumbai",
         "LIC agent",
@@ -49,7 +49,7 @@ export async function generateMetadata({
     "mutual-funds": {
       title: "Mutual Funds & Wealth Creation — SIP, Portfolio Management & Expert Advisory",
       description:
-        "Best mutual fund advisor in Mumbai. ₹500Cr+ AUM managed. SIP, SWP, portfolio management, ELSS tax-saving funds. Expert fund selection & quarterly rebalancing by 8x MDRT qualifier. Start with ₹500/month.",
+        "Best mutual fund advisor in Mumbai. ₹50Cr+ AUM managed. SIP, SWP, portfolio management, ELSS tax-saving funds. Expert fund selection & quarterly rebalancing by 15x MDRT qualifier. Start with ₹500/month.",
       keywords: [
         "mutual funds advisor Mumbai",
         "SIP investment",

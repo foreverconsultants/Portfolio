@@ -115,12 +115,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="pt-4">
-                <a
-                  href="#book"
+                <Link
+                  href="/#book"
                   className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-full text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-all hover:scale-105 shadow-lg shadow-[#3B82F6]/25"
                 >
                   Book Consultation
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
