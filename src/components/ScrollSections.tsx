@@ -75,8 +75,8 @@ export default function ScrollSections() {
   return (
     <div className="relative w-full">
       {/* 3D Particle Background - Using absolute wrapper with sticky child to eliminate -mt-[100vh] CLS */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="sticky top-0 h-[100svh] w-full">
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
           <SceneWrapper />
         </div>
       </div>
