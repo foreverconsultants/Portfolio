@@ -107,15 +107,15 @@ END:VCARD`;
         {/* Header with photo background */}
         <div className="vcard-header relative h-64 overflow-hidden">
           {/* Background Image with Overlay */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-transparent">
             <img 
               src="https://res.cloudinary.com/dbnlmt97x/image/upload/q_auto/f_auto/v1775031318/Untitled_design_23_w0hgi5.png" 
               alt="Sujata Gandhi"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 35%' }}
+              className="w-full h-full object-contain"
+              style={{ objectPosition: 'center' }}
             />
             {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/80" />
           </div>
           
           <div className="relative z-10 h-full flex flex-col items-center justify-end pb-6">

@@ -48,6 +48,24 @@ export default function ScrollSections() {
     }
   }, { scope: containerRef });
 
+  // Fix for Next.js hash link navigation (e.g., /#book) 
+  // Wait for GSAP pin spacers to be injected into the DOM before calculating scroll offset
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+        const el = document.querySelector(hash) as HTMLElement;
+        if (el) {
+          // Precise relative scroll
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }, 500); // Wait for page to fully paint and GSAP pin spacers to inject
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
